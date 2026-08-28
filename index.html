@@ -1,35 +1,162 @@
 <!doctype html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Clean Google</title>
 </head>
 
 <body>
+
   <h1>Clean Google</h1>
 
-  <form action="https://www.google.com/search" method="get">
-    <input type="text" name="q" placeholder="Search Google">
-    <input type="hidden" name="filter"
-      value="-site:reddit.com -site:youtube.com -site:facebook.com -site:instagram.com -site:tiktok.com -site:x.com -site:twitter.com -site:snapchat.com -site:twitch.tv -site:netflix.com -site:threads.net">
+  <form id="searchForm">
+    <input
+      id="searchBox"
+      type="search"
+      placeholder="Search Google"
+      autocomplete="off"
+      autofocus
+    >
     <button type="submit">Search</button>
   </form>
 
   <script>
-    document.querySelector("form").addEventListener("submit", function(e) {
-      e.preventDefault();
 
-      const query = document.querySelector('[name="q"]').value;
-      const exclusions =
-        "-site:reddit.com -site:youtube.com -site:facebook.com " +
-        "-site:instagram.com -site:tiktok.com -site:x.com " +
-        "-site:twitter.com -site:snapchat.com -site:twitch.tv " +
-        "-site:netflix.com -site:threads.net";
+    /*
+    ============================================================
+    BLOCKLIST
+
+    To block another website later, just add:
+    "example.com",
+
+    Don't include https:// or www.
+    ============================================================
+    */
+
+    const blockedSites = [
+
+      // SOCIAL / COMMUNITY
+      "reddit.com",
+      "facebook.com",
+      "instagram.com",
+      "threads.net",
+      "tiktok.com",
+      "x.com",
+      "twitter.com",
+      "snapchat.com",
+      "bereal.com",
+      "tumblr.com",
+      "mastodon.social",
+      "bluesky.app",
+      "bsky.app",
+      "discord.com",
+
+      // IMAGE / SOCIAL DISCOVERY
+      "flickr.com",
+      "pinterest.com",
+      "imgur.com",
+      "deviantart.com",
+      "500px.com",
+
+      // VIDEO
+      "youtube.com",
+      "youtu.be",
+      "vimeo.com",
+      "dailymotion.com",
+      "twitch.tv",
+      "kick.com",
+
+      // TV / STREAMING
+      "netflix.com",
+      "primevideo.com",
+      "disneyplus.com",
+      "max.com",
+      "hbomax.com",
+      "paramountplus.com",
+      "peacocktv.com",
+      "hulu.com",
+      "crunchyroll.com",
+
+      // CREATOR / FEED PLATFORMS
+      "substack.com",
+      "patreon.com",
+      "onlyfans.com",
+
+      // DATING
+      "tinder.com",
+      "bumble.com",
+      "hinge.co",
+      "badoo.com",
+      "grindr.com",
+      "happn.com",
+      "okcupid.com",
+      "match.com",
+      "pof.com",
+
+      // GAMING
+      "roblox.com",
+      "steampowered.com",
+      "steamcommunity.com",
+      "epicgames.com",
+      "xbox.com",
+      "playstation.com",
+
+      // BETTING / GAMBLING
+      "bet365.com",
+      "williamhill.com",
+      "betfair.com",
+      "paddypower.com",
+      "skybet.com",
+      "ladbrokes.com",
+      "coral.co.uk",
+      "unibet.co.uk",
+      "888.com",
+      "888casino.com",
+      "pokerstars.com",
+
+      // ADULT
+      "pornhub.com",
+      "xvideos.com",
+      "xnxx.com",
+      "youporn.com",
+      "redtube.com"
+
+    ];
+
+
+    /*
+    ============================================================
+    DON'T EDIT BELOW HERE
+    ============================================================
+    */
+
+    const searchForm = document.getElementById("searchForm");
+    const searchBox = document.getElementById("searchBox");
+
+    searchForm.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const query = searchBox.value.trim();
+
+      if (!query) return;
+
+      const exclusions = blockedSites
+        .map(site => "-site:" + site)
+        .join(" ");
+
+      const cleanQuery = query + " " + exclusions;
 
       window.location.href =
         "https://www.google.com/search?q=" +
-        encodeURIComponent(query + " " + exclusions);
+        encodeURIComponent(cleanQuery);
+
     });
+
   </script>
+
 </body>
+
 </html>
