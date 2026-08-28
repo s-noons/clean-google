@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+
+  <ShortName>Clean Google</ShortName>
+
+  <Description>
+    Google Search without blocked and distracting websites
+  </Description>
+
+  <InputEncoding>UTF-8</InputEncoding>
+
+  <Url
+    type="text/html"
+    method="get"
+    template="https://www.google.com/search?q={searchTerms}%20-site%3Areddit.com%20-site%3Afacebook.com%20-site%3Ainstagram.com%20-site%3Athreads.net%20-site%3Atiktok.com%20-site%3Ax.com%20-site%3Atwitter.com%20-site%3Asnapchat.com%20-site%3Abereal.com%20-site%3Atumblr.com%20-site%3Aflickr.com%20-site%3Apinterest.com%20-site%3Aimgur.com%20-site%3Asubstack.com%20-site%3Ayoutube.com%20-site%3Avimeo.com%20-site%3Adailymotion.com%20-site%3Atwitch.tv%20-site%3Anetflix.com%20-site%3Aprimevideo.com%20-site%3Adisneyplus.com"
+  />
+
+</OpenSearchDescription>
